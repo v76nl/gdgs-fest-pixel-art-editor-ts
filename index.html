@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixel Art Editor</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+    <div id="app">
+        <div id="p5-holder"></div>
+
+        <div id="toolbar">
+            <button id="penBtn" class="active">✏️ ペン</button>
+            <button id="eraserBtn">🩹 消しゴム</button>
+            <button id="undoBtn">↩️ Undo</button>
+            <button id="clearBtn">🗑 クリア</button>
+        </div>
+
+        <div id="palette"></div>
+
+        <div class="hint">
+            クリック/ドラッグで塗りつぶし。右クリックでスポイト。
+            Shift を押しながらで直線モード（同一行/列）。
+            ⌘/Ctrl+Zで動作を1回取消し。
+        </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
