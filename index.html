@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pixel Art Editor</title>
     <link rel="stylesheet" href="/style.css" />
-</head>
-<body>
-    <div id="app">
-        <div id="p5-holder"></div>
+  </head>
 
-        <div id="toolbar">
-            <button id="penBtn" class="active">✏️ ペン</button>
-            <button id="eraserBtn">🩹 消しゴム</button>
-            <button id="undoBtn">↩️ 取り消し</button>
-            <button id="clearBtn">🗑 全消し</button>
-        </div>
+  <body>
+    <main>
+      <!-- 描画エリア -->
+      <div class="canvas-wrapper">
+        <div id="p5-holder" class="canvas-holder"></div>
+        <div id="sprite-tabs" class="sprite-tabs"></div>
+      </div>
 
-        <div id="palette"></div>
+      <!-- 操作ボタン -->
+      <div class="toolbar">
+        <button id="penBtn" class="active">ペン</button>
+        <button id="eraserBtn">消しゴム</button>
+        <button id="undoBtn">取り消し</button>
+        <button id="clearBtn">全消し</button>
+      </div>
 
-        <div class="hint">
-            クリック/ドラッグで塗りつぶし。右クリックでスポイト。
-            Shift を押しながらで直線モード（同一行/列）。
-            ⌘/Ctrl+Zで動作を1回取消し。
-        </div>
-    </div>
+      <!-- カラーパレット -->
+      <div id="palette" class="palette"></div>
+
+      <!-- 操作ヒント -->
+      <div class="hint">
+        クリック/ドラッグで塗りつぶし。右クリックでスポイト。
+        Shift を押しながらで直線モード（同一行/列）。⌘/Ctrl+Zで動作を1回取消し。
+      </div>
+    </main>
 
     <script type="module" src="/src/main.ts"></script>
-</body>
+  </body>
 </html>

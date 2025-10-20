@@ -1,135 +1,157 @@
-/* -------------------------
-   全体レイアウト
--------------------------- */
+/* ===========================
+   Global Layout
+   =========================== */
 body {
-    font-family: "Noto Sans JP", sans-serif;
-    background: linear-gradient(135deg, #e0e7ff 0%, #f9fafb 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
+  background: #fafafa;
+  font-family: "Inter", "Hiragino Sans", "Meiryo", sans-serif;
+  color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
 }
 
-/* -------------------------
-   メインコンテナ
--------------------------- */
-#app {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(12px);
-    padding: 28px 36px;
-    border-radius: 18px;
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
-    transition: box-shadow 0.3s ease, transform 0.2s ease;
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
 }
 
-#app:hover {
-    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.25);
-    transform: translateY(-2px);
+/* ===========================
+   Canvas Wrapper
+   =========================== */
+.canvas-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* 左端基準 */
+  justify-content: center;
+  margin: 0;
+  padding: 0;
 }
 
-/* -------------------------
-   キャンバス表示領域
--------------------------- */
-#p5-holder {
-    display: flex;
-    justify-content: center;
-    margin: 16px auto;
+.canvas-holder {
+  background: #eaeaea;
+  padding: 12px;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin: 0;
 }
 
-/* -------------------------
-   ツールバー
--------------------------- */
-#toolbar {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 16px;
+/* ===========================
+   Sprite Tabs
+   =========================== */
+.sprite-tabs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f6f6f6;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 8px 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+  margin-top: -1px; /* canvasとの境界を密着 */
 }
 
-#toolbar button {
-    background: linear-gradient(180deg, #ffffff, #f1f3f5);
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-    padding: 10px 18px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    cursor: pointer;
-    color: #333;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease;
+.tab-btn {
+  padding: 6px 12px;
+  background: #fdfdfd;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-#toolbar button:hover {
-    background: linear-gradient(180deg, #f9fafb, #e5e7eb);
-    transform: translateY(-1px);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+.tab-btn:hover {
+  background: #eaeaea;
 }
 
-#toolbar button.active {
-    background: linear-gradient(180deg, #007aff, #0056c7);
-    color: #fff;
-    border-color: #0056c7;
-    box-shadow: 0 3px 10px rgba(0, 122, 255, 0.4);
+.tab-btn.active {
+  background: #007aff;
+  color: white;
+  border-color: #007aff;
+  box-shadow: 0 0 6px rgba(0, 122, 255, 0.4);
 }
 
-/* -------------------------
-   カラーパレット
--------------------------- */
-#palette {
-    display: grid;
-    grid-template-columns: repeat(8, 28px); /* ← 8個で1行に */
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-    gap: 6px; /* 均一な間隔 */
-    margin: 20px auto;
+.tab-btn.add {
+  font-weight: bold;
+  background: #e6f0ff;
+  color: #007aff;
+  border-color: #a8c9ff;
 }
 
-
-.color {
-    width: 24px;
-    height: 24px;
-    border: 1px solid #bbb;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.1s ease, box-shadow 0.1s ease;
+/* ===========================
+   Toolbar
+   =========================== */
+.toolbar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-.color:hover {
-    transform: scale(1.2);
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+.toolbar button {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
 }
 
-.color.selected {
-    outline: 2px solid #007aff;
-    transform: scale(1.15);
+.toolbar button:hover {
+  background: #f0f0f0;
 }
 
-/* -------------------------
-   ヒントテキスト
--------------------------- */
+.toolbar button.active {
+  background: #007aff;
+  color: white;
+  border-color: #007aff;
+}
+
+/* ===========================
+   Palette
+   =========================== */
+.palette {
+  display: grid;
+  grid-template-columns: repeat(8, 28px);
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  gap: 6px;
+  margin: 16px auto 8px;
+}
+
+.palette .color {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  transition: transform 0.1s ease, border 0.2s;
+}
+
+.palette .color:hover {
+  transform: scale(1.1);
+}
+
+.palette .color.selected {
+  outline: 2px solid #007aff;
+  transform: scale(1.15);
+}
+
+/* ===========================
+   Hint
+   =========================== */
 .hint {
-    font-size: 0.9rem;
-    color: #555;
-    margin-top: 14px;
-    line-height: 1.6;
-}
-
-/* -------------------------
-   レスポンシブ（小画面）
--------------------------- */
-@media (max-width: 480px) {
-    #app {
-        padding: 20px;
-    }
-    #toolbar button {
-        padding: 8px 12px;
-        font-size: 0.85rem;
-    }
-    #palette {
-        grid-template-columns: repeat(6, 26px);
-    }
+  font-size: 0.85rem;
+  color: #666;
+  text-align: center;
+  margin-top: 8px;
+  line-height: 1.6;
 }
